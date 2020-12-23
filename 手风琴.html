@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>实现手风琴案例</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				list-style: none;
+			}
+			div{
+				width: 1150px;
+				height: 400px;
+				margin: 100px auto;
+				border: 1px solid red;
+				overflow: hidden;
+			}
+			div li{
+				width: 240px;
+				height: 400px;
+				float: left;
+			}
+			div ul{
+				width: 1300px;
+			}
+		</style>
+		<script type="text/javascript" src="../js/jquery-1.8.2.js" ></script>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><img src="../img/1.jpg"/></li>
+				<li><img src="../img/2.jpg"/></li>
+				<li><img src="../img/3.jpg"/></li>
+				<li><img src="../img/4.jpg"/></li>
+				<li><img src="../img/5.jpg"/></li>
+			</ul>
+		</div>
+	</body>
+	<!--js-->
+	<script type="text/javascript">
+		$(function(){
+			/*兄弟元素的获取 - siblings()*/
+			/*事件绑定的是li*/
+			$("ul li").mouseenter(function(){
+				/* stop()方法表示动画在什么地方停止 - 停止之前的动画，再开始后面的动画 */
+				/*当鼠标经过这个li的时候，其他的兄弟元素触发动画效果*/
+				$(this).siblings().stop().animate({"width":100},300);
+				//鼠标选中的这个li自己
+				$(this).stop().animate({"width":800},300);
+			}).mouseleave(function(){
+				//回复到原来的状态
+				//$(this).parent(表示ul
+				$(this).parent().children().stop().animate({"width":240},300);
+			})
+		})
+	</script>
+</html>
